@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Play{% endblock %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+    <h2>You're at question {{ question_level }}</h2>
+    <h3>Story</h3>
+    <p>{{ question_story }}</p>
+    <h3>Question</h3>
+    <p>{{ question_text }}</p>
+
+    <form action="{% url 'play' %}" method="POST">
+        {% csrf_token %}
+        <label for="answer">Answer:</label>
+        <input name="answer" id = "answer" type="text">
+        <p><input type="submit">Submit</p>
+    </form>
+{% endblock %}

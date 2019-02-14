@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <main>
+        <div id="sidebar">
+            <h1>Sherlocked</h1>
+        </div>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+</body>
+</html>
