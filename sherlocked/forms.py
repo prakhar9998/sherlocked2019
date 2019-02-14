@@ -1,13 +1,15 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import Player
 
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widgets=forms.PasswordInput)
+class PlayerCreationForm(UserCreationForm):
 
-class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+    class Meta(UserCreationForm):
+        model = Player
+        fields = ('username', 'email', 'zealicon_id')
 
-    class Meta:
-        model = User
-        fields = ('username',  'email')
+class PlayerChangeForm(UserChangeForm):
+
+    class Meta(UserChangeForm):
+        model = Player
+        fields = ('username', 'email', 'zealicon_id', 'level')

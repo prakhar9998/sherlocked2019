@@ -1,3 +1,15 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    question_story = models.TextField()
+    question_level = models.IntegerField(default=-1)
+    answer = models.CharField(max_length=100)
+
+class Player(AbstractUser):
+    level = models.IntegerField(default=1)
+    zealicon_id = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.username
