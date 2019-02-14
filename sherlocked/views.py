@@ -23,9 +23,6 @@ def play(request):
     question = Question.objects.get(question_level=player.level)
     
     if request.method=='POST':
-        print("answer to question is: " + question.answer.lower())
-        print("submitted answer is: " + str(request.POST.get("answer")))
-
         if question.answer.lower() == str(request.POST.get("answer")):
             # TODO: Add a check for winning condition
             # Increment the level of player if last question is not reached
