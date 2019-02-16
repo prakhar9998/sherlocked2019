@@ -23,10 +23,7 @@ def play(request):
     player = Player.objects.get(username=request.user.username)
     question = Question.objects.get(question_level=player.level)
     
-    # TODO: Ajax
-    if request.method=='POST':
-        print("answer to question is: " + question.answer.lower())
-        print("submitted answer is: " + str(request.POST.get("answer")))
+    if request.method == 'POST':
 
         if question.answer.lower() == str(request.POST.get("answer")):
             # TODO: Add a check for winning condition
@@ -47,6 +44,7 @@ def play(request):
     question_text = question.question_text
     question_story = question.question_story
     question_level = question.question_level
+    
     context = {
         'question_text': question_text,
         'question_story': question_story,
