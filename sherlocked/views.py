@@ -1,34 +1,40 @@
+"""
+Contains views for the sherlocked app.
+"""
+
 from django.shortcuts import HttpResponse, render, redirect
 from django.http import JsonResponse
-from django.urls import reverse_lazy
-from django.views import generic
 from django.contrib.auth.decorators import login_required
-from .models import Question
 from userAuth.models import Player
-
-import datetime
+from .models import Question
 
 
 @login_required
 def dashboard(request):
+
+    """
+    Player dashboard containing the basic info like
+    the level user is at.
+    """
+
     player = Player.objects.get(username=request.user.username)
     return HttpResponse("Hello, {}. This is the dashboard. You are at level {}"\
         .format(player.username, player.level))
 
 @login_required
 def play(request):
-    # user submitted an answer to a question
+
+    """
+    This method will render the question according to
+    the no. of question a player have solved. The submit url
+    also redirects to this question.
+    """
+
     player = Player.objects.get(username=request.user.username)
     question = Question.objects.get(question_level=player.level)
 
-    question_text = question.question_text
-    question_story = question.question_story
-    question_level = question.question_level
-    
     context = {
-        'question_text': question_text,
-        'question_story': question_story,
-        'question_level': question_level, 
+        'question': question,
     }
 
     return render(
@@ -38,6 +44,13 @@ def play(request):
     )
 
 def submit(request):
+
+    """
+    This method is called after a user submits the answer.
+    The answer gets validated through this method and if the
+    answer is correct the player's level is increased.
+    """
+
     if request.method == 'POST':
 
         is_correct = 'false'
