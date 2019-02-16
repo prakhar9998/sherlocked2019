@@ -1,4 +1,5 @@
 from django.shortcuts import HttpResponse, render
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -22,6 +23,7 @@ def play(request):
     player = Player.objects.get(username=request.user.username)
     question = Question.objects.get(question_level=player.level)
     
+    # TODO: Ajax
     if request.method=='POST':
         print("answer to question is: " + question.answer.lower())
         print("submitted answer is: " + str(request.POST.get("answer")))
@@ -34,17 +36,25 @@ def play(request):
 
             # fetch next question to display if answer is correct
             question = Question.objects.get(question_level=player.level)
+        else:
+            return JsonResponse(
+                {
+                    'isCorrect': 'false',
+                    'responseText': 'Wrong Answer! Please try again..'
+                }
+            )
 
     question_text = question.question_text
     question_story = question.question_story
     question_level = question.question_level
+    context = {
+        'question_text': question_text,
+        'question_story': question_story,
+        'question_level': question_level,
+    }
 
     return render(
         request,
         'sherlocked/play.html',
-        {
-            'question_text': question_text,
-            'question_story': question_story,
-            'question_level': question_level,
-        }
+        context
     )

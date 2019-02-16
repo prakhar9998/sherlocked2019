@@ -10,6 +10,6 @@ class Question(models.Model):
 class Player(AbstractUser):
     level = models.IntegerField(default=1)
     zealicon_id = models.CharField(max_length=20)
-
+    
     def __str__(self):
         return self.username
