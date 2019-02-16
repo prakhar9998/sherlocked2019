@@ -9,7 +9,12 @@
     <p>{{ question_story }}</p>
     <h3>Question</h3>
     <p>{{ question_text }}</p>
-
+    {% if remaining_seconds is not None %}
+        <div>
+            <h1 id="time-left">
+                calculateTime(remaining_seconds)
+            </h1>
+        </div>
     <form action="{% url 'play' %}" method="POST" id="ans-form">
         {% csrf_token %}
         <label for="answer">Answer:</label>
@@ -46,5 +51,9 @@
             });
             return false;
         });
+
+        function calculateTime() {
+
+        }
     </script>
 {% endblock %}
