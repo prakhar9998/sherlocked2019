@@ -76,3 +76,10 @@ def submit(request):
             }
         )
     return redirect("play")
+
+def leaderboard(request):
+    return HttpResponse("This is leaderboard.")
+
+@login_required
+def winner(request):
+    return HttpResponse("You win! Yay!")

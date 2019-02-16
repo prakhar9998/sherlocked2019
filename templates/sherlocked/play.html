@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-{% load static %}
+
+{% load staticfiles %}
+
 {% block title %}Play{% endblock %}
 
 {% block content %}
@@ -20,31 +22,6 @@
     <p id='response'></p>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-    <script type="text/javascript">
-        var frm = $('#ans-form');
-        frm.submit(function () {
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                    if (data['isCorrect'] == 'false') {
-                        // if answer is wrong, 
-                        // stay on the page and display message.
-                        $("#response").html(data['responseText']);
-                    }
-                    else {
-                        // redirect to the next question page
-                        // if the answer is correct
-                        window.location.href = "{% url 'play' %}"
-                    }
-                },
-                error: function(data) {
-                    $("#response").html("Something went wrong!");
-                }
-            });
-            return false;
-        });
-    </script>
+    
+    <script src="{% static 'js/ajax_submit.js' %}"></script>
 {% endblock %}
