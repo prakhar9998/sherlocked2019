@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import HttpResponse, render, redirect
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views import generic
@@ -20,27 +20,6 @@ def play(request):
     # user submitted an answer to a question
     player = Player.objects.get(username=request.user.username)
     question = Question.objects.get(question_level=player.level)
-    remaining_seconds = None
-
-    if request.method == 'POST':
-
-        if question.answer.lower() == str(request.POST.get("answer")):
-            # TODO: Add a check for winning condition
-            # Increment the level of player if last question is not reached
-            player.level = player.level + 1
-            unlock_time = datetime.datetime.now() + datetime.timedelta(seconds=25)
-            player.time_delta = unlock_time
-            player.save()
-
-            # fetch next question to display if answer is correct
-            question = Question.objects.get(question_level=player.level)
-        else:
-            return JsonResponse(
-                {
-                    'isCorrect': 'false',
-                    'responseText': 'Wrong Answer! Please try again..'
-                }
-            )
 
     question_text = question.question_text
     question_story = question.question_story
@@ -57,3 +36,30 @@ def play(request):
         'sherlocked/play.html',
         context
     )
+
+def submit(request):
+    if request.method == 'POST':
+
+        is_correct = 'false'
+        response_text = 'Wrong Answer! Please try again!'
+
+        player = Player.objects.get(username=request.user.username)
+        question = Question.objects.get(question_level=player.level)
+        if question.answer.lower() == str(request.POST.get("answer")):
+
+            # TODO: Add a check for winning condition
+
+            # Increment the level of player if last question is not reached
+            player.level = player.level + 1
+            player.save()
+
+            is_correct = 'true'
+            response_text = 'Correct Answer!'
+
+        return JsonResponse(
+            {
+                'isCorrect': is_correct,
+                'responseText': response_text,
+            }
+        )
+    return redirect("play")

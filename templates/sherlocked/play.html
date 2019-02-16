@@ -9,7 +9,8 @@
     <p>{{ question_story }}</p>
     <h3>Question</h3>
     <p>{{ question_text }}</p>
-    <form action="{% url 'play' %}" method="POST" id="ans-form">
+    
+    <form action="{% url 'submit' %}" method="POST" id="ans-form">
         {% csrf_token %}
         <label for="answer">Answer:</label>
         <input name="answer" id = "answer" type="text">
