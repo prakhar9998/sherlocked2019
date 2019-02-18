@@ -5,4 +5,6 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('play/', views.play, name='play'),
     path('submit', views.submit, name='submit'),
+    path('winner/', views.winner, name='winner'),
+    path('leaderboard/', views.leaderboard, name='leaderboard'),
 ]

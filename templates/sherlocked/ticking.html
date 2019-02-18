@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}You gotta wait!{% endblock %}
+
+{% block content %}
+    <p></p>
+    <div id="text"><span id="time"></span> countdown.</div>
+
+    <script>
+        var sec = "{{ time_left }}";
+        sec = Math.ceil(sec);
+    </script>
+    <script src="{% static 'js/timer.js' %}"></script>
+{% endblock %}

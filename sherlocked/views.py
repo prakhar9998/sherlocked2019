@@ -5,9 +5,13 @@ Contains views for the sherlocked app.
 from django.shortcuts import HttpResponse, render, redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
 from userAuth.models import Player
 from .models import Question
 
+from datetime import tzinfo, timedelta, datetime
 
 @login_required
 def dashboard(request):
@@ -31,6 +35,24 @@ def play(request):
     """
 
     player = Player.objects.get(username=request.user.username)
+    
+    tz_info = player.unlock_time.tzinfo
+    time_left = (player.unlock_time - datetime.now(tz_info)).total_seconds()
+
+    # print("Time left = ", time_left)
+    if time_left >= 0:
+        # Time is left until the user can access the next question
+        return render(
+            request,
+            'sherlocked/ticking.html',
+            {'time_left': time_left}
+        )
+
+    # Check for winning condition
+    # TODO: change the winning conditions according to the questions
+    if player.level == 5:
+        return redirect("winner")
+
     question = Question.objects.get(question_level=player.level)
 
     context = {
@@ -48,7 +70,7 @@ def submit(request):
     """
     This method is called after a user submits the answer.
     The answer gets validated through this method and if the
-    answer is correct the player's level is increased.
+    answer is correct the player's level is increased. 
     """
 
     if request.method == 'POST':
@@ -58,12 +80,12 @@ def submit(request):
 
         player = Player.objects.get(username=request.user.username)
         question = Question.objects.get(question_level=player.level)
+
         if question.answer.lower() == str(request.POST.get("answer")):
-
-            # TODO: Add a check for winning condition
-
             # Increment the level of player if last question is not reached
             player.level = player.level + 1
+            wait_time = timedelta(seconds=62)
+            player.unlock_time = datetime.now() + wait_time
             player.save()
 
             is_correct = 'true'
@@ -78,8 +100,30 @@ def submit(request):
     return redirect("play")
 
 def leaderboard(request):
-    return HttpResponse("This is leaderboard.")
+    players_list = Player.objects.order_by()
+    paginator = Paginator(players_list, 10)
+    
+    page = request.GET.get('page')
+    contacts = paginator.get_page(page)
+
+    try:
+        players = paginator.page(page)
+    except PageNotAnInteger:
+        players = paginator.page(1)
+    except EmptyPage:
+        players = paginator.page(paginator.num_pages)
+    
+    return render(
+        request,
+        'sherlocked/leaderboard.html',
+        {'players': players}
+    )
 
 @login_required
 def winner(request):
-    return HttpResponse("You win! Yay!")
+    player = Player.objects.get(username=request.user.username)
+    # TODO: change the winning condition as per the questions length
+    if player.level == 5:
+        return HttpResponse("You win! Yay! Give yourself a pat on the back.")
+    else:
+        return redirect("play")
