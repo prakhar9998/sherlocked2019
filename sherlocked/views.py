@@ -84,8 +84,12 @@ def submit(request):
         if question.answer.lower() == str(request.POST.get("answer")):
             # Increment the level of player if last question is not reached
             player.level = player.level + 1
+
+            # Increment the amount of time the user needs to wait 
+            # to move on to the next question.
             wait_time = timedelta(seconds=62)
             player.unlock_time = datetime.now() + wait_time
+
             player.save()
 
             is_correct = 'true'
@@ -104,7 +108,7 @@ def leaderboard(request):
     paginator = Paginator(players_list, 10)
     
     page = request.GET.get('page')
-    contacts = paginator.get_page(page)
+    players = paginator.get_page(page)
 
     try:
         players = paginator.page(page)
