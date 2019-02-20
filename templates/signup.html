@@ -6,6 +6,16 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Sign Up</button>
+        <button onclick="validate()">Sign Up</button>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var pass1 = document.querySelector("#id_password1");
+            var pass2 = document.querySelector("#id_password2");
+            console.log(pass1);
+            console.log(pass2);
+        })
+    </script>
+
 {% endblock %}

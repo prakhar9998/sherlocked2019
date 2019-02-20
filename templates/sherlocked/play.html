@@ -1,25 +1,38 @@
 {% extends 'base.html' %}
 
-{% load staticfiles %}
+{% load static %}
 
 {% block title %}Play{% endblock %}
 
 {% block content %}
     <h1>{{ user.username }}</h1>
     <h2>You're at question {{ question.question_level }}</h2>
-    <h3>Story</h3>
-    <p>{{ question.question_story }}</p>
-    <h3>Question</h3>
-    <p>{{ question.question_text }}</p>
+    <div id="story">
+            <h3>Story</h3>
+        <p>{{ question.question_story }}</p>
+    </div>
 
-    <form action="{% url 'submit' %}" method="POST" id="ans-form">
-        {% csrf_token %}
-        <label for="answer">Answer:</label>
-        <input name="answer" id = "answer" type="text">
-        <p><input type="submit">Submit</p>
-    </form>
+    <div id="question" style="display: none;">
+        <h3>Question</h3>
+        <p>{{ question.question_text }}</p>
+        <form action="{% url 'submit' %}" method="POST" id="ans-form">
+            {% csrf_token %}
+            <label for="answer">Answer:</label>
+            <input name="answer" id = "answer" type="text">
+            <p><input type="submit">Submit</p>
+        </form>
+    </div>
+
+    <button onclick="displayQuestion()">Go to the question</button>
 
     <p id='response'></p>
+
+    <script>
+        function displayQuestion() {
+            document.querySelector('#story').style.display = "none";
+            document.querySelector("#question").style.display = "block";
+        }
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     

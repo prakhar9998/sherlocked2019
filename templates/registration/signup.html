@@ -1,14 +1,30 @@
 <h2>Sign up</h2>
-  <form method="post" action="{% url 'signup' %}">
+<form method="post" action="{% url 'signup' %}">
     {% csrf_token %}
     {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
+        <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        </p>
     {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
+    <button type="submit">submit</button>
+    <p><span id="validate-message"></span></p>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        var pass1 = document.querySelector("#id_password1");
+        var pass2 = document.querySelector("#id_password2");
+        pass2.addEventListener('keyup', () => {
+            var validateMessage = document.querySelector("#validate-message");
+            if (pass1.value === pass2.value && pass1.value != "") {
+                validateMessage.innerHTML = "Yay!";
+            } else {
+                validateMessage.innerHTML = "Nope.. You shall not pass.";
+            }
+        });
+    })
+</script>

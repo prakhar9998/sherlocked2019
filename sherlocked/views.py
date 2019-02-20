@@ -7,7 +7,6 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-
 from userAuth.models import Player
 from .models import Question
 
@@ -59,6 +58,7 @@ def play(request):
         'question': question,
     }
 
+    # TODO: Add flip clock in template
     return render(
         request,
         'sherlocked/play.html',
@@ -87,14 +87,15 @@ def submit(request):
 
             # Increment the amount of time the user needs to wait 
             # to move on to the next question.
-            wait_time = timedelta(seconds=62)
-            player.unlock_time = datetime.now() + wait_time
-
+            # question.wait_time = timedelta(seconds=12)
+            player.unlock_time = datetime.now() + question.wait_duration
+            player.last_solved = datetime.now()
             player.save()
 
             is_correct = 'true'
             response_text = 'Correct Answer!'
 
+        # TODO: Pass a dictionary in JSON response
         return JsonResponse(
             {
                 'isCorrect': is_correct,
@@ -104,7 +105,7 @@ def submit(request):
     return redirect("play")
 
 def leaderboard(request):
-    players_list = Player.objects.order_by()
+    players_list = Player.objects.order_by("level", "-last_solved")
     paginator = Paginator(players_list, 10)
     
     page = request.GET.get('page')
