@@ -105,6 +105,7 @@ def submit(request):
     return redirect("play")
 
 def leaderboard(request):
+    """ Display a leaderboard. Duh! """
     players_list = Player.objects.order_by("level", "-last_solved")
     paginator = Paginator(players_list, 10)
     

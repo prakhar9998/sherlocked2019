@@ -1,15 +1,33 @@
-{% extends "base.html" %}
 {% load static %}
 
-{% block title %}You gotta wait!{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'flipclock/compiled/flipclock.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{% static 'flipclock/compiled/flipclock.min.js' %}"></script>
+    </head>
+    <body>
+        <div class='countdown-clock' style="margin: 40px;">
+            
+        </div>
 
-{% block content %}
-    <p></p>
-    <div id="text"><span id="time"></span> countdown.</div>
-
-    <script>
+        <script type="text/javascript">
         var sec = "{{ time_left }}";
-        sec = Math.ceil(sec);
-    </script>
-    <script src="{% static 'js/timer.js' %}"></script>
-{% endblock %}
+            $(document).ready(function() {
+                var clock = $('.countdown-clock').FlipClock(sec, {
+                    autoStart: false,
+                    callbacks: {
+                        stop: function() {
+                            window.location.reload();
+                        }
+                    }
+                })
+                    
+                 
+                clock.setCountdown(true);
+                clock.start();
+            });
+        </script>
+    </body>
+</html>
