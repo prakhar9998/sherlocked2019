@@ -2,19 +2,30 @@
 
 {% load static %}
 
-{% block title %}Play{% endblock %}
+{% block title %}Solve Mystery{% endblock %}
 
 {% block content %}
     <h1>{{ user.username }}</h1>
+
+    <!-- Question story. -->
     <h2>You're at question {{ question.question_level }}</h2>
     <div id="story">
             <h3>Story</h3>
         <p>{{ question.question_story }}</p>
     </div>
 
+
+    <!-- Question content. Hidden by default -->
     <div id="question" style="display: none;">
         <h3>Question</h3>
+        {% if question.image %}
+            <div id="ques-img">
+                    <img src="{{ question.image.url }}" alt="Question Image">
+            </div>
+        {% endif %}
         <p>{{ question.question_text }}</p>
+
+        <!-- Submission form -->
         <form action="{% url 'submit' %}" method="POST" id="ans-form">
             {% csrf_token %}
             <label for="answer">Answer:</label>

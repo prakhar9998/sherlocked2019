@@ -58,7 +58,6 @@ def play(request):
         'question': question,
     }
 
-    # TODO: Add flip clock in template
     return render(
         request,
         'sherlocked/play.html',
@@ -85,9 +84,8 @@ def submit(request):
             # Increment the level of player if last question is not reached
             player.level = player.level + 1
 
-            # Increment the amount of time the user needs to wait 
+            # Increment the amount of time the user needs to wait
             # to move on to the next question.
-            # question.wait_time = timedelta(seconds=12)
             player.unlock_time = datetime.now() + question.wait_duration
             player.last_solved = datetime.now()
             player.save()
@@ -95,13 +93,12 @@ def submit(request):
             is_correct = 'true'
             response_text = 'Correct Answer!'
 
-        # TODO: Pass a dictionary in JSON response
-        return JsonResponse(
-            {
-                'isCorrect': is_correct,
-                'responseText': response_text,
-            }
-        )
+        response = {
+            'isCorrect': is_correct,
+            'responseText': response_text,
+        }
+
+        return JsonResponse(response)
     return redirect("play")
 
 def leaderboard(request):
