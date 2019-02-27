@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}Leaderboard{% endblock %}
+{% block title %}Rules{% endblock %}
 
 {% block content %}
     <div id="menu-table">
@@ -13,14 +13,6 @@
                     <th>Level</th>
                     <th>College</th>
                 </tr>
-                {% for player in players %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ player.first_name }} {{ player.last_name }}</td>
-                    <td>{{ player.level }}</td>
-                    <td>{{ player.college_name }}</td>
-                </tr>
-                {% endfor %}
             </table>
         </div>
     </div>

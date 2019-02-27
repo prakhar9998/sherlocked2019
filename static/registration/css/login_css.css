@@ -1,0 +1,170 @@
+
+@font-face{
+    src:url(qwe.ttf) format('truetype');
+    font-family: legend;
+}
+
+@font-face{
+    src:url(bahnschrift_light.ttf) format('truetype');
+    font-family: bahnschrift_light;
+}
+
+
+
+body{
+	background-color: #231f20;
+    font-family: 'bahnschrift_light';
+
+}
+
+
+
+div img{
+	
+    height:100vh; 
+    width:22vw; 
+}
+
+div p{
+	font-size: 15px;
+}
+
+div button {
+    /*font-size: 2px;*/
+    border-radius: 50px;
+    height: 40px;
+    width: 100%;
+    background-color: #664747;
+    color: #ffffff;
+    border: none;
+    display: block;
+    padding: 3px;
+
+}
+
+
+input::placeholder {
+    text-align: center;
+}
+
+
+
+.pic{
+  
+    min-width: 150px;
+    /*width:30vw;*/
+    /*height:40vw;*/
+
+    
+
+}
+
+.Sherlocked{
+    padding-top: 35%;
+    font-size: 5vw;
+    font-color:blue;
+    font-family: legend;    
+    color: white;
+    text-align: center;
+        width:80%;
+
+}
+
+input[type=text]{
+background-color: #fff3e0;
+  
+
+}
+input[type=password]{
+background-color: #fff3e0;
+ 
+}
+
+input[type=text]:focus {
+  background-color: #fff3f8;
+
+}
+
+input[type=password]:focus {
+  background-color: #fff3f8;
+  border: 0px ;
+}
+
+.register{
+    padding-top: 6%;
+    font-size: 3vh;
+    color: white;
+        width:80%;
+
+}
+
+
+a:link {
+  color:#fff3e0 ;
+  text-decoration:none; 
+}
+
+a:visited {
+  color: #fff3e0;
+}
+
+.sub{
+    padding-top: 10%;
+}
+
+.login{
+        width:80%;
+
+
+}
+
+.log{
+    font-size: 20px;
+    padding-top: 1px;
+}
+@media only screen and (max-width: 767px) {
+  body { 
+        height:auto;
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-image: url('../img/abc.png'); 
+     background-blend-mode: multiply;
+     background-color: #231f15;
+     background-position: center;
+     /*padding-top: 40%;*/
+     height: 100vh;
+
+     /*justify-content: center top;*/
+    }
+
+.Sherlocked{
+    font-size: 12vw;
+    padding-top: 80%;
+    font-family: legend;    
+    width: 100%;
+
+}
+
+.log{
+    font-size: 3vw;
+
+
+    
+}
+
+div button{
+    /*padding: 1px;*/
+    height: 25px;
+    margin-top: 10px;
+}
+
+
+.register{
+    font-size: 2vh;
+    width: 100%;
+}
+.login{
+    width: 100%;
+}
+
+}

@@ -1,29 +1,54 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-    <div id="container">
-        <div class="sidebar">
-            <div class="logo">
-                <h1 id="header">Sherlocked</h1>
-                <img src="{% static 'img/sherlock.png' %}" height="150" width="150" alt="sherlock image">
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- custom css -->
+        <link rel="stylesheet" type="text/css" href="{% static 'sherlocked/css/main.css' %}">
+
+        <!-- font awesome cdn -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+
+        <div class="text-white" id="divOne">
+            <button id="toggle-button" class="btn" onclick="toggle()"><span class="fa fa-bars"></span></button>
+            <div id="oneOne" class="text-center">
+                <h2>Sherlocked</h2>
+                <img src="{% static 'sherlocked/img/Ellipse1.png' %}" alt="sherlock" id="sher-image">
             </div>
-            <a href="#" class="links">Solve Mystery</a>
-            <a href="#" class="links">Leaderboard</a>
-            <a href="#" class="links">Description</a>
-            <a href="#" class="links">Rules</a>
-            <a href="#" class="links">Forum</a>
-            <a href="#" class="links">Logout</a>
+            <div id="oneTwo">
+                <ul class="text-center">
+                    <a href="{% url 'play' %}"><li>Solve Mystery</li></a>
+                    <a href="{% url 'leaderboard' %}"><li>Leaderboard</li></a>
+                    <a href="#"><li>Dashboard</li></a>
+                    <a href="/sherlocked/rules"><li>Rules</li></a>
+                    <a href=""><li>Forum</li></a>
+                    <a href="{% url 'logout' %}"><li>Logout</li></a>
+
+                </ul>
+            </div>
         </div>
-    
-        <div id="content">
+        <div id="divTwo">
             {% block content %}
             {% endblock %}
-        </div>  
-    </div>
-  
-</body>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <!-- custom js -->
+        <script type="text/javascript" src="{% static 'sherlocked/js/main.js' %}"></script>
+    </body>
 </html>

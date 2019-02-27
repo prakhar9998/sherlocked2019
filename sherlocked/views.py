@@ -38,6 +38,10 @@ def play(request):
     tz_info = player.unlock_time.tzinfo
     time_left = (player.unlock_time - datetime.now(tz_info)).total_seconds()
 
+    # Check for winning condition
+    if player.level == Question.objects.all().count() + 1:
+        return redirect("winner")
+    
     # print("Time left = ", time_left)
     if time_left >= 0:
         # Time is left until the user can access the next question
@@ -46,11 +50,6 @@ def play(request):
             'sherlocked/ticking.html',
             {'time_left': time_left}
         )
-
-    # Check for winning condition
-    # TODO: change the winning conditions according to the questions
-    if player.level == 5:
-        return redirect("winner")
 
     question = Question.objects.get(question_level=player.level)
 
@@ -69,7 +68,7 @@ def submit(request):
     """
     This method is called after a user submits the answer.
     The answer gets validated through this method and if the
-    answer is correct the player's level is increased. 
+    answer is correct the player's level is increased.
     """
 
     if request.method == 'POST':
@@ -103,30 +102,30 @@ def submit(request):
 
 def leaderboard(request):
     """ Display a leaderboard. Duh! """
-    players_list = Player.objects.order_by("level", "-last_solved")
-    paginator = Paginator(players_list, 10)
+    players_list = Player.objects.order_by("-level", "last_solved")\
+        .filter(is_superuser = False)
+    # paginator = Paginator(players_list, 10)
     
-    page = request.GET.get('page')
-    players = paginator.get_page(page)
+    # page = request.GET.get('page')
+    # players = paginator.get_page(page)
 
-    try:
-        players = paginator.page(page)
-    except PageNotAnInteger:
-        players = paginator.page(1)
-    except EmptyPage:
-        players = paginator.page(paginator.num_pages)
+    # try:
+    #     players = paginator.page(page)
+    # except PageNotAnInteger:
+    #     players = paginator.page(1)
+    # except EmptyPage:
+    #     players = paginator.page(paginator.num_pages)
     
     return render(
         request,
         'sherlocked/leaderboard.html',
-        {'players': players}
+        {'players': players_list}
     )
 
 @login_required
 def winner(request):
     player = Player.objects.get(username=request.user.username)
-    # TODO: change the winning condition as per the questions length
-    if player.level == 5:
+    if player.level == Question.objects.all().count() + 1:
         return HttpResponse("You win! Yay! Give yourself a pat on the back.")
     else:
         return redirect("play")
