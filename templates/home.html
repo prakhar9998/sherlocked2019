@@ -4,11 +4,15 @@
 
 {% block content %}
     {% if user.is_authenticated %}
+    <div class="text-center dash">
         Hi {{ user.username }}! You are at question {{ user.level }}
         <p><a href="{% url 'logout' %}">logout</a></p>
-    {% else %}
-        <p>You are not logged in</p>
+    </div>
+	{% else %}
+    <div class="text-center dash">
+		<p>YOU ARE NOT LOGGED IN !</p>
         <a href="{% url 'login' %}">login</a> |
         <a href="{% url 'signup' %}">signup</a>
+    </div>
     {% endif %}
 {% endblock %}
