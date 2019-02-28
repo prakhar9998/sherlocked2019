@@ -1,30 +1,154 @@
-<h2>Sign up</h2>
-<form method="post" action="{% url 'signup' %}">
-    {% csrf_token %}
-    {% for field in form %}
-        <p>
-            {{ field.label_tag }}<br>
-            {{ field }}
-            {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
-            {% endfor %}
-        </p>
-    {% endfor %}
-    <button type="submit">submit</button>
-    <p><span id="validate-message"></span></p>
-</form>
+{% load static %}
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        var pass1 = document.querySelector("#id_password1");
-        var pass2 = document.querySelector("#id_password2");
-        pass2.addEventListener('keyup', () => {
-            var validateMessage = document.querySelector("#validate-message");
-            if (pass1.value === pass2.value && pass1.value != "") {
-                validateMessage.innerHTML = "Yay!";
-            } else {
-                validateMessage.innerHTML = "Nope.. You shall not pass.";
-            }
-        });
-    })
-</script>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'registration/css/signup_css.css' %}">
+</head>
+
+<body>
+    <div class="container-fluid text-center main">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <p class="text-center signup">SIGNUP</p>
+                <form method="post" action="{% url 'signup' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="form-container">
+                                <label for="id_username"></label>
+                                {{ form.username }}
+                                {% for error in form.username.errors %}
+                                    <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-container">
+                                <label for="id_firstname"></label>
+                                {{ form.firstname }}
+                                {% for error in form.firstname.errors %}
+                                    <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-container">
+                                <label for="id_lastname"></label>
+                                {{ form.lastname }}
+                                {% for error in form.lastname.errors %}
+                                    <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="form-container">
+                                <label for="id_email"></label>
+                                {{ form.email }}
+                                {% for error in form.email.errors %}
+                                    <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-container">
+                        <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="id_password1"></label>
+                                {{ form.password1 }}
+                                {% for error in form.password1.errors %}
+                                    <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="col-6">
+                                <label for="id_password2"></label>
+                                {{ form.password2}}
+                                {% for error in form.password2.errors %}
+                                    <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <div class="form-container">
+                                    <label forvalidate-message="id_college_name"></label>
+                                    {{ form.college_name }}
+                                    {% for error in form.college_name.errors %}
+                                        <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-container">
+                            <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label forvalidate-message="zealid"></label>
+                                    {{ form.zeal_Id }}
+                                    {% for error in form.zeal_Id.errors %}
+                                        <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-6">
+                                    <label for="id_contact_no"></label>
+                                    {{ form.contact_no }}
+                                    {% for error in form.contact_no.errors %}
+                                        <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div></div></div>
+                        </div>
+                        <div style="margin-top: 8%;">
+                            <button type="submit" class="button display-block">Signup</button>
+                        </div>
+                        <p><span id="validate-message"></span></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var pass1 = document.querySelector("#id_password1");
+            var pass2 = document.querySelector("#id_password2");
+            pass2.addEventListener('keyup', () => {
+                var validateMessage = document.querySelector("#validate-message");
+                if (pass1.value === pass2.value && pass1.value != "") {
+                    validateMessage.innerHTML = "Passwords matched! Yay!";
+                    validateMessage.style.color = "green";
+                } else {
+                    validateMessage.innerHTML = "You shall not pass.";
+                    validateMessage.style.color = "red";
+                }
+            });
+        })
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>
+
