@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Leaderboard{% endblock %}
+
+{% block content %}
+    <div id="menu-table">
+        <h2 class="mb-3">Leaderboard</h2>
+        <div class="table-responsive" style="height: 40vh; overflow-y: auto;">
+            <table class="table table-borderless text-center">
+                <thead>
+                    <tr id="table-head">
+                        <th>S.No</th>
+                        <th>Username</th>
+                        <th>Level</th>
+                        <th>College</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ player.first_name }} {{ player.last_name }}</td>
+                            <td>{{ player.level }}</td>
+                            <td>{{ player.college_name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Solve Mystery{% endblock %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+
+    <!-- Question story. -->
+    <h2>You're at question {{ question.question_level }}</h2>
+    <div id="story" style="margin-top: 5%;">
+            <h3>Story</h3>
+        <p>{{ question.question_story }}</p>
+    </div>
+
+    <!-- Question content. Hidden by default -->
+    <div id="question" style="display: none; margin-top: 5%;">
+        <h3>Question</h3>
+        {% if question.image %}
+            <div id="ques-img">
+                    <img src="{{ question.image.url }}" alt="Question Image">
+            </div>
+        {% endif %}
+        <p>{{ question.question_text }}</p>
+
+        <!-- Submission form -->
+        <form action="{% url 'submit' %}" method="POST" id="ans-form">
+            {% csrf_token %}
+            <label for="answer">Answer:</label>
+            <input name="answer" id = "answer" type="text">
+            <p><input class="btn1 d-block mx-auto" type="submit" style="margin-top: 5%;"></p>
+        </form>
+    </div>
+
+    <button class="btn1" onclick="displayQuestion()" id="question-btn">Go to the question</button>
+    <button class="btn1" onclick="displayStory()" style="display: none;" id="story-btn">Go back</button>
+
+    <p id='response'></p>
+
+    <script>
+        function displayQuestion() {
+            document.querySelector('#story').style.display = "none";
+            document.querySelector("#question").style.display = "block";
+            document.querySelector('#question-btn').style.display = "none";
+            document.querySelector('#story-btn').style.display = "block";
+        }
+
+        function displayStory() {
+            document.querySelector('#story').style.display = "block";
+            document.querySelector("#question").style.display = "none";
+            document.querySelector('#question-btn').style.display = "block";
+            document.querySelector('#story-btn').style.display = "none";
+        }
+    </script>    
+    <script src="{% static 'js/ajax_submit.js' %}"></script>
+{% endblock %}

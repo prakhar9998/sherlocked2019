@@ -1,0 +1,82 @@
+@font-face{
+    src:url(qwe.ttf) format('truetype');
+    font-family: legend;
+}
+
+@font-face{
+    src:url(bahnschrift_light.ttf) format('truetype');
+    font-family: bahnschrift_light;
+}
+
+body{
+	background-color: #282425;
+    font-family: bahnschrift_light;
+
+}
+
+
+
+.signup{
+	color: white;
+	font-size: 7vw;
+	padding-top: 2vh;
+	font-family: legend;	
+
+}
+
+div button{
+	width: 30vw;
+	color: white;
+	border:none;
+	height: 5vh;
+	background-color: #664747;
+    font-style: "dauphin"; !important
+    
+
+}
+
+input[type=text]{
+background-color: #fff3e0;
+  border-radius: 0px;
+
+}
+input[type=password]{
+background-color: #fff3e0;
+  border-radius: 0px;
+ 
+}
+
+input[type=text]:focus {
+  background-color: #fff3f8;
+
+}
+
+input[type=password]:focus {
+  background-color: #fff3f8;
+  border: 0px ;
+}
+
+input::placeholder {
+    text-align: center;
+    font-style: "Times";
+}
+
+
+
+@media only screen and (max-width: 767px)
+{
+	.signup{
+		padding-top: 15%;
+		font-size: 20vw;
+	}
+
+	.main{
+		height: 90%;
+		width: 90%;
+	}
+
+ .button{
+ 	width: 90%;
+ 	margin:10% 0; 
+ }
+}

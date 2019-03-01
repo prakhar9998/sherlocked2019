@@ -1,0 +1,313 @@
+@font-face {
+    font-family: "Legends";
+    src: url(qwe.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "bahnschrift";
+    src: url(bahnschrift_light.ttf) format("truetype");
+}
+
+input[type=text]:focus {
+	background: white;
+
+}
+
+input::placeholder {
+    text-align: center;
+    color: white;
+    opacity: 0.7
+}
+
+.dash{
+    font-family: "legend" !important;
+	margin: 18% 10%;
+	font-size: 3vw;
+}
+
+.dash a{
+	color: #231f20 !important;
+}
+
+.dash a:hover{
+	color: #ffcc99 !important;
+}
+
+.btn1{
+	color: white;
+	background-color:#6F4242;
+	border-radius: 2px;
+	border:none;
+	margin: 5%;
+	padding: 0.8%;
+	box-shadow: none; 
+	margin-left: 0;
+	margin-top: 0;
+}
+
+p,h1{
+    font-family: "bahnschrift";
+
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #fef9c7;
+    font-family: "bahnschrift";
+
+}
+
+a:link {
+  text-decoration: none;
+  color:white;
+
+}
+
+a:visited {
+  text-decoration: none;
+  color:white;
+ 
+}
+
+li:hover{
+	text-decoration: none;
+    font-color:white;
+	background-color: #6F4242;	
+}
+
+li:active {
+  text-decoration: none;
+  font-color:white;
+  background-color: #6F4242;
+
+}
+
+
+.h2{
+    font-family: "Legends";
+
+}
+
+#divOne {
+	height: 100vh;
+	width: 25%;
+	background-color: #231f20;
+}
+
+#oneOne {
+	height: 48vh;
+	padding-top: 5vh;
+}
+
+#oneOne h2 {
+	font-family: "Legends", sans-serif;
+}
+
+#sher-image {
+	padding-top: 2vh;
+	width: 180px;
+	min-width: 160px;
+}
+
+#oneTwo {
+	height: 52vh;
+}
+
+#oneTwo ul {
+	list-style: none;
+	display: block;
+	padding-left: 0;
+	width: 100%;
+}
+
+#oneTwo ul li {
+	height: 8vh;
+	font-size: 1.2em;
+	width: 100%;
+	padding-top: 2vh;
+}
+
+
+#oneTwo ul li span {
+	padding: 17px;
+}
+
+#toggle-button {
+	display: none;
+}
+
+#divTwo {
+	/*background-color: #EAEAAE;*/
+	
+	width: 75%;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-image: url("../img/3.png");
+	background-position: bottom;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+#table-head {
+	background-color: #6F4242;
+	color: white;
+	font-size: 12px;
+
+}
+
+#menu-table {
+	width: 80%;
+	display: block;
+	margin: auto;
+	padding-top: 20vh;
+}
+
+#menu-table h2{
+	font-family: "Legends", sans-serif;
+}
+
+#answer{
+	background: #fef9c7;
+    border: none;
+    color: #6F4242;
+    outline:none;
+    width: 70%;
+    box-shadow:none;
+    border-bottom: 1px solid black;
+    border-radius: none;
+    display: block;
+    margin: auto;
+}
+
+#answer:focus {
+  /*background-color: #fef9c4;*/
+  box-shadow: 1px;
+
+}
+
+
+@media only screen and (max-width: 768px){
+	#divOne {
+		width: 100%;
+		height: 53vh;
+		position: absolute;
+		top: -53vh;
+		transition: all 400ms linear;
+		z-index: 2;
+	}
+
+	#toggle-button {
+		display: block;
+		position: absolute;
+		top: 54vh;
+		left: 1vw;
+		background: transparent;
+		border: 0px;
+
+	}
+
+	#divOne.active{
+		top: 0vh;
+	}
+
+	#oneOne {
+		width: 50%;
+		height: 53vh;
+		float: left;
+	}
+
+	#oneTwo{
+		width: 50%;
+		height: 53vh;
+		float: right;
+	}
+
+	#divTwo{
+		width: 100%;
+	}
+
+	#menu-table {
+		width: 90%;
+	}
+h4{
+	padding-top: 10%;
+}
+
+.dash{
+	margin-top: 50%;
+	font-size: 7vw !important;
+}
+
+.dash a{
+	margin-top: 15% !important;
+}
+
+	
+}
+
+@media only screen and (max-width: 576px){
+	#divOne{
+		height: 90vh;
+		top: -90vh;
+		transition: all 750ms linear;
+	}
+	#toggle-button {
+		top: 91vh;
+	}
+	#divone.active {
+		top: 0vh;
+	}
+	#oneOne {
+		width: 100%;
+		height: 45vh;
+		padding-top: 0vh;
+		display: block;
+		margin: auto;
+		padding-top: 2vh;
+	}
+
+	#sher-image {
+		width: 165px;
+	}
+
+	h4{
+	padding-top: 10%;
+}
+.dash{
+	margin-top: 50%;
+	font-size: 7vw !important;
+}
+
+.dash a{
+	margin-top: 15% !important;
+}
+
+
+
+	#oneTwo{
+		width: 100%;
+		height: 45vh;
+		display: block;
+		margin: auto;
+	}
+
+	#oneTwo ul {
+		padding-bottom: 1vh;
+	}
+
+	#oneTwo ul li {
+		padding-top: 1vh;
+		height: 7.5vh;
+	}
+
+	#divTwo {
+		width: 100%;
+	}
+
+	#menu-table{
+		width: 95%;
+	}
+}
