@@ -35,15 +35,10 @@ div button{
 
 }
 
-input[type=text]{
-background-color: #fff3e0;
-  border-radius: 0px;
-
-}
-input[type=password]{
-background-color: #fff3e0;
-  border-radius: 0px;
- 
+input[type=text], input[type=password], input[type=email]{
+	background-color: #fff3e0;
+	border-radius: 0px;
+	text-align: center;
 }
 
 input[type=text]:focus {

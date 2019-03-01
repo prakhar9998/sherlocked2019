@@ -38,7 +38,7 @@ input::placeholder {
 	background-color:#6F4242;
 	border-radius: 2px;
 	border:none;
-	margin: 5%;
+	margin-top: 5vh;
 	padding: 0.8%;
 	box-shadow: none; 
 	margin-left: 0;
@@ -149,6 +149,8 @@ li:active {
 	background-position: bottom;
 	background-size: contain;
 	background-repeat: no-repeat;
+	padding: 5vw;
+	overflow-x: auto;
 }
 
 #table-head {
@@ -174,12 +176,13 @@ li:active {
     border: none;
     color: #6F4242;
     outline:none;
-    width: 70%;
+    width: 25%;
     box-shadow:none;
     border-bottom: 1px solid black;
     border-radius: none;
-    display: block;
+    display: inline-block;
     margin: auto;
+    margin-left: 32px;
 }
 
 #answer:focus {
@@ -188,8 +191,24 @@ li:active {
 
 }
 
-
+.question_story{
+	height: 35vh;
+	max-height: 35vh;
+	overflow-y: auto;
+}
+#ques-img img{
+	height: 40vh;
+	width: auto;
+}
 @media only screen and (max-width: 768px){
+	.btn1{
+		margin-right: auto;
+		margin-left: auto;
+	}
+	#ques-img img{
+		width: 70vw;
+		height: auto;
+	}
 	#divOne {
 		width: 100%;
 		height: 53vh;
@@ -227,6 +246,8 @@ li:active {
 
 	#divTwo{
 		width: 100%;
+		padding: 10vw;
+		text-align: center;
 	}
 
 	#menu-table {
@@ -244,7 +265,11 @@ h4{
 .dash a{
 	margin-top: 15% !important;
 }
-
+.question_story{
+	height: 55vh;
+	max-height: 55vh;
+	overflow-y: auto;
+}
 	
 }
 
