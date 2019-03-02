@@ -5,18 +5,18 @@
 {% block title %}Solve Mystery{% endblock %}
 
 {% block content %}
-    <h1>{{ user.username }}</h1>
+    <h3>{{ user.username }}</h3>
 
     <!-- Question story. -->
-    <h2>You're at question {{ question.question_level }}</h2>
-    <div id="story" style="margin-top: 5%;">
-            <h3>Story</h3>
-        <p>{{ question.question_story }}</p>
+    <h5>You're at question {{ question.question_level }}</h5>
+    <div id="story" style="margin-top: 5vh;">
+            <h1>Story</h1>
+        <p class="question_story">{{ question.question_story }}</p>
     </div>
 
     <!-- Question content. Hidden by default -->
-    <div id="question" style="display: none; margin-top: 5%;">
-        <h3>Question</h3>
+    <div id="question" style="display: none; margin-top: 5vh;">
+        <h1>Question</h1>
         {% if question.image %}
             <div id="ques-img">
                     <img src="{{ question.image.url }}" alt="Question Image">
@@ -27,9 +27,9 @@
         <!-- Submission form -->
         <form action="{% url 'submit' %}" method="POST" id="ans-form">
             {% csrf_token %}
-            <label for="answer">Answer:</label>
+            <span>Answer:</span>
             <input name="answer" id = "answer" type="text">
-            <p><input class="btn1 d-block mx-auto" type="submit" style="margin-top: 5%;"></p>
+            <p><input class="btn1 d-block" type="submit" style="margin-top: 5%;"></p>
         </form>
     </div>
 
