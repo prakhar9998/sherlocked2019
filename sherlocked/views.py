@@ -109,7 +109,7 @@ def leaderboard(request):
     """
 
     players_list = Player.objects.order_by("-level", "last_solved")\
-        .filter(is_superuser=False)[:15]
+        .filter(is_superuser=False)[:30]
     # paginator = Paginator(players_list, 10)
     
     # page = request.GET.get('page')
@@ -127,9 +127,10 @@ def leaderboard(request):
         'sherlocked/leaderboard.html',
         {'players': players_list}
     )
-
+#TODo: Make a Winner Template
 @login_required
 def winner(request):
+
     player = Player.objects.get(username=request.user.username)
     if player.level == Question.objects.all().count() + 1:
         return HttpResponse("You win! Yay! Give yourself a pat on the back.")
