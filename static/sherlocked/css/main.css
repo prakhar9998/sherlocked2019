@@ -129,9 +129,8 @@ li:active {
 	padding-top: 2vh;
 }
 
-
 #oneTwo ul li span {
-	padding: 17px;
+	padding: 0 2vw;
 }
 
 #toggle-button {
@@ -208,6 +207,23 @@ li:active {
 	height: 30vh;
 	width: auto;
 }
+
+.about{
+	margin-top: 4vh;
+}
+
+#rules-content li:hover {
+	background: transparent;
+}
+
+.icon-bar img{
+	width: 24px;
+}
+
+.icon-bar {
+	float: right;
+}
+
 @media only screen and (max-width: 768px){
 	
 	#ques-img img{
@@ -320,6 +336,18 @@ li:active {
 		margin: 0% auto;
 	}
 
+	.about{
+		text-align: left;
+	}
+
+	#oneTwo ul li span {
+		padding: 0 5vw;
+	}
+
+	.icon-bar {
+		padding-right: 2vw;
+	}
+
 	
 }
 
@@ -328,6 +356,7 @@ li:active {
 		height: 90vh;
 		top: -90vh;
 		transition: all 750ms linear;
+		z-index: 2 !important;
 	}
 	#toggle-button {
 		top: 91vh;

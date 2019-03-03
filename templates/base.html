@@ -28,12 +28,18 @@
                 <img src="{% static 'sherlocked/img/Ellipse1.png' %}" alt="sherlock" id="sher-image">
             </div>
             <div id="oneTwo">
-                <ul class="text-center">
-                    <a href="{% url 'play' %}"><li>Solve Mystery</li></a>
-                    <a href="{% url 'leaderboard' %}"><li>Leaderboard</li></a>
-                    <a href="/sherlocked/rules"><li>Rules</li></a>
-                    <a href=""><li>Forum</li></a>
-                    <a href="{% url 'logout' %}"><li>Logout</li></a>
+                <ul>
+                    <a href="{% url 'play' %}"><li><span>Solve Mystery</span> <span class="icon-bar"><img src="{% static 'sherlocked/img/icon-1.png' %}"></span></li></a>
+
+                    <a href="{% url 'leaderboard' %}"><li><span>Leaderboard</span> <span class="icon-bar"><img src="{% static 'sherlocked/img/icon-2.png' %}"></span></li></a>
+
+                    <a href=""><li><span>Description</span> <span class="icon-bar"><img src="{% static 'sherlocked/img/icon-3.png' %}"></span></li></a>
+
+                    <a href="/sherlocked/rules"><li><span>Rules</span> <span class="icon-bar"><img src="{% static 'sherlocked/img/icon-4.png' %}"></span></li></a>
+
+                    <a href="https://www.facebook.com/ZealSherlocked" target="blank"><li><span>Forum</span> <span class="icon-bar"><img src="{% static 'sherlocked/img/icon-5.png' %}"></span></li></a>
+
+                    <a href="{% url 'logout' %}"><li><span>Logout</span> <span class="icon-bar"><img src="{% static 'sherlocked/img/icon-6.png' %}"></span></li></a>
 
                 </ul>
             </div>

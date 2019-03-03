@@ -1,2 +1,9 @@
-.countdown-clock {
+@media only screen and (max-width: 768px){
+	.countdown-clock {
+		width: 80vw !important;
+	}
+
+	.countdown-clock {
+		z-index: 1 !important;
+	}
 }
