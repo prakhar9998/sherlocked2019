@@ -5,31 +5,29 @@
 {% block title %}Solve Mystery{% endblock %}
 
 {% block content %}
-    <h3>{{ user.username }}</h3>
-
+    
     <!-- Question story. -->
-    <h5>You're at question {{ question.question_level }}</h5>
-    <div id="story" style="margin-top: 5vh;">
+    
+    <div id="story" style="margin-top: 0vh;">
             <h1>Story</h1>
         <p class="question_story">{{ question.question_story }}</p>
     </div>
 
     <!-- Question content. Hidden by default -->
-    <div id="question" style="display: none; margin-top: 5vh; overflow-x: hidden; overflow-y:scroll;">
-        <h1>Question</h1>
+    <div id="question" style="display: none; margin-top: 0vh; overflow-x: hidden; overflow-y:scroll;">
+        <h2>Question</h2>
+        <p style="margin-top: 2%; margin-left: 1%;" id="question-main">{{ question.question_text }}</p>
         {% if question.image %}
-            <div id="ques-img">
+            <div id="ques-img" style="margin-top: 2%; margin-left: 1%;">
                     <img src="{{ question.image.url }}" alt="Question Image">
             </div>
         {% endif %}
-        <p>{{ question.question_text }}</p>
-
+        
         <!-- Submission form -->
-        <form action="{% url 'submit' %}" method="POST" id="ans-form">
+        <form action="{% url 'submit' %}" method="POST" id="ans-form" style="margin-top: 4%; margin-left: 1%;">
             {% csrf_token %}
-            <span>Answer:</span>
-            <input name="answer" id = "answer" type="text">
-            <p><input class="btn1 d-block" type="submit" style="margin-top: 5%;"></p>
+            <input name="answer" id = "answer" type="text" placeholder="Answer">
+            <p><input class="btn1 d-block ques-btn" type="submit" value="submit"></p>
         </form>
     </div>
 
@@ -47,9 +45,9 @@
         }
 
         function displayStory() {
-            document.querySelector('#story').style.display = "block";
+            document.querySelector('#story').style.display = "inline-block";
             document.querySelector("#question").style.display = "none";
-            document.querySelector('#question-btn').style.display = "block";
+            document.querySelector('#question-btn').style.display = "inline-block";
             document.querySelector('#story-btn').style.display = "none";
         }
     </script>    
