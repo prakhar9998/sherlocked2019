@@ -4,9 +4,9 @@ from django.views import View
 from .forms import CustomUserForm
 from django.contrib.auth import authenticate
 
-def index(request):
-    user = request.user
-    return render(request, 'home.html', {'user': user})
+# def index(request):
+#     user = request.user
+#     return render(request, 'home.html', {'user': user})
 
 # class Login(View):
 #     def get(self, request):

@@ -9,5 +9,6 @@ urlpatterns = [
     path('submit', views.submit, name='submit'),
     path('winner/', views.winner, name='winner'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
-    path('rules/', TemplateView.as_view(template_name='sherlocked/rules.html'))
+    path('rules/', TemplateView.as_view(template_name='sherlocked/rules.html')),
+    path('description/', TemplateView.as_view(template_name='sherlocked/about.html'))
 ]

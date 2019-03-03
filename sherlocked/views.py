@@ -25,7 +25,7 @@ def dashboard(request):
     return HttpResponse("Hello, {}. This is the dashboard. You are at level {}"\
         .format(player.username, player.level))
 
-@login_required
+@login_required(login_url='/login')
 def play(request):
 
     """
@@ -124,7 +124,7 @@ def leaderboard(request):
     
     return render(
         request,
-        'sherlocked/about.html',
+        'sherlocked/leaderboard.html',
         {'players': players_list}
     )
 #TODo: Make a Winner Template
