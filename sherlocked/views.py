@@ -124,7 +124,7 @@ def leaderboard(request):
     
     return render(
         request,
-        'sherlocked/leaderboard.html',
+        'sherlocked/about.html',
         {'players': players_list}
     )
 #TODo: Make a Winner Template

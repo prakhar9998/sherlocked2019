@@ -15,6 +15,10 @@
 
     <!-- Question content. Hidden by default -->
     <div id="question" style="display: none; margin-top: 0vh; overflow-x: hidden; overflow-y:scroll;">
+        <i class="fa fa-volume-up" style="color: black; font-size: 1.5em; position: fixed; top: 5vh; right: 5vw;" id="volume-button" onclick="mute()"></i>
+        <audio id="audio">
+            <source src="{% static 'sherlocked/audio/music.mp3' %}" type="audio/mpeg">
+        </audio>
         <h2>Question</h2>
         <p style="margin-top: 2%; margin-left: 1%;" id="question-main">{{ question.question_text }}</p>
         {% if question.image %}
@@ -27,6 +31,7 @@
         <form action="{% url 'submit' %}" method="POST" id="ans-form" style="margin-top: 4%; margin-left: 1%;">
             {% csrf_token %}
             <input name="answer" id = "answer" type="text" placeholder="Answer">
+            <p id='response'></p>
             <p><input class="btn1 d-block ques-btn" type="submit" value="submit"></p>
         </form>
     </div>
@@ -34,7 +39,7 @@
     <button class="btn1" onclick="displayQuestion()" id="question-btn">Go to the question</button>
     <button class="btn1" onclick="displayStory()" style="display: none;" id="story-btn">Go back</button>
 
-    <p id='response'></p>
+    
 
     <script>
         function displayQuestion() {
@@ -42,6 +47,10 @@
             document.querySelector("#question").style.display = "block";
             document.querySelector('#question-btn').style.display = "none";
             document.querySelector('#story-btn').style.display = "block";
+            var audio = document.getElementById('audio');
+            audio.loop = true;
+            audio.play();
+            audio.volume = 0.35; 
         }
 
         function displayStory() {
@@ -49,6 +58,20 @@
             document.querySelector("#question").style.display = "none";
             document.querySelector('#question-btn').style.display = "inline-block";
             document.querySelector('#story-btn').style.display = "none";
+        }
+
+        function mute(){
+            var btn = document.getElementById('volume-button');
+            if(btn.classList.contains('fa-volume-up')){
+                btn.classList.remove('fa-volume-up');
+                btn.classList.add('fa-volume-off');
+                document.getElementById('audio').muted = true;
+            }
+            else if(btn.classList.contains('fa-volume-off')){
+                btn.classList.remove('fa-volume-off');
+                btn.classList.add('fa-volume-up');
+                document.getElementById('audio').muted = false;
+            }
         }
     </script>    
     <script src="{% static 'js/ajax_submit.js' %}"></script>

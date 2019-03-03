@@ -11,12 +11,16 @@
     <link rel="stylesheet" href="{% static 'flipclock/css/clock.css' %}">
 
     <!-- TODO: Add some better text message here. -->
-    <div>
-        Wait Time
+
+    <div style="display: block; margin: 5vh auto; text-align: center; margin-left: -20px;">
+            <h4>"A little patience makes no harm."</h4>
     </div>
-    <div class='countdown-clock' style="margin: 40px;">
+    
+    <div class='countdown-clock' style="margin: 40px; width: 40vw; display: block; margin: 0 auto; margin-top: 8vh;">
             
-        </div>
+    </div>
+
+        
 
         <script type="text/javascript">
         var sec = "{{ time_left }}";
