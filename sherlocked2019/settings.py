@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userAuth',
     'sherlocked.apps.SherlockedConfig',
+    'import_export',
 ]
 
 MIDDLEWARE = [
